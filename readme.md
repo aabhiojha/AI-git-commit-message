@@ -1,84 +1,104 @@
-**Git Commit Message Generator**
-=====================================
-
-A Python script that uses the LangChain library and Groq's LLaMA model to generate conventional Git commit messages based on the staged changes in a repository.
+**gcommit: AI-Powered Git Commit Message Generator**
+=====================================================
 
 **Table of Contents**
 -----------------
 
 1. [Introduction](#introduction)
-2. [Usage](#usage)
-3. [Requirements](#requirements)
-4. [Installation](#installation)
-5. [Configuration](#configuration)
-6. [Troubleshooting](#troubleshooting)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Requirements](#requirements)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 **Introduction**
 ---------------
 
-This script uses the LangChain library to interact with Groq's LLaMA model, which generates commit messages based on the staged changes in a Git repository. The script follows the Conventional Commit style and writes in the imperative mood.
+`gcommit` is a command-line tool that generates clear, conventional Git commit messages using an AI model (LLaMA3 via Groq API). It analyzes your staged changes (`git diff --cached`) and outputs a concise commit message following the [Conventional Commits](https://www.conventionalcommits.org/) standard.
+
+**Features**
+------------
+
+* Generates commit messages automatically using AI
+* Enforces **Conventional Commit** style (`feat:`, `fix:`, `docs:`, etc.)
+* Uses staged changes as context
+* Works from any Git repository directory
+
+**Installation**
+---------------
+
+### Using `setup.sh` Script
+
+1. Clone this repository: `git clone https://github.com/yourusername/AI-git-commit-message.git`
+2. Navigate to the repository: `cd AI-git-commit-message`
+3. Make the script executable: `chmod +x setup.sh`
+4. Run the script: `./setup.sh`
+
+### Using `pip install`
+
+1. Clone this repository: `git clone https://github.com/yourusername/AI-git-commit-message.git`
+2. Navigate to the repository: `cd AI-git-commit-message`
+3. Install dependencies: `pip install .`
 
 **Usage**
 -----
 
-1. Clone this repository or copy the script to your local machine.
-2. Install the required dependencies (see [Installation](#installation) section).
-3. Run the script with the path to your Git repository as an argument:
-
-```bash
-python commit_message_generator.py /path/to/your/repo
-```
-
-If no path is provided, the script will use the current working directory.
+1. Stage your changes: `git add .`
+2. Run `gcommit`: `gcommit`
+3. The script will:
+	* Detect the Git repository
+	* Read staged changes
+	* Generate an AI-powered commit message
+	* Print the suggested message
 
 **Requirements**
 ------------
 
 * Python 3.8+
-* LangChain library (`pip install langchain`)
-* Groq API key (sign up for a free API key on the Groq website)
-* Git repository with staged changes
-
-**Installation**
-------------
-
-1. Install the LangChain library:
-
-```bash
-pip install langchain
-```
-
-2. Install the required dependencies:
-
-```bash
-pip install python-dotenv
-```
-
-**Configuration**
---------------
-
-1. Create a `.env` file in the root of your repository with your Groq API key:
-
-```makefile
-GROQ_API_KEY=your_api_key_here
-```
-
-Alternatively, you can run the script and enter your API key when prompted.
-
-**Troubleshooting**
------------------
-
-* If you encounter issues with the script, check the error messages and ensure that:
-	+ Your Groq API key is valid and correctly configured.
-	+ Your Git repository has staged changes.
-	+ The script has the necessary permissions to access your repository.
+* Groq API key
+* Dependencies listed in `requirements.txt`
 
 **Contributing**
 ------------
 
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and submit a pull request.
+Pull requests are welcome! For major changes, open an issue first to discuss your ideas.
 
 **License**
 -------
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+MIT License. See `LICENSE` for details.
+
+**Example Use Case**
+-----------------
+
+```bash
+$ git add .
+$ gcommit
+Using git repo path: /home/user/myrepo
+fix: install generate_commit script as gcommit
+```
+
+Copy the output and use it in your commit:
+
+```bash
+git commit -m "fix: install generate_commit script as gcommit"
+```
+
+**Known Issues**
+--------------
+
+* None reported yet
+
+**Future Development**
+-------------------
+
+* Add support for multiple AI models
+* Improve commit message generation accuracy
+* Integrate with popular Git tools and workflows
+
+**Acknowledgments**
+----------------
+
+* Groq API for providing AI model access
+* Conventional Commits for defining commit message standards
