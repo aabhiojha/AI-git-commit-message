@@ -13,12 +13,11 @@ if not os.environ.get("GROQ_API_KEY"):
     os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for Groq: ")
 
 model = init_chat_model("llama3-8b-8192", model_provider="groq")
-# response = model.invoke("Hello, world!")
 
 print(
     """
     Example usage: 
-    python msg.py path/to/git_repo
+    python msg.py optional:path/to/git_repo
     
 """
 )
@@ -45,13 +44,15 @@ prompt = ChatPromptTemplate.from_messages(
         (
             "system",
             (
-                "You are an expert in writing clear, conventional git commit messages. "
-                "Your task is to generate a single, well-formatted commit message based on the user's input. "
-                "Follow these rules:\n"
-                "- Use the Conventional Commit style (e.g., feat:, fix:, docs:, refactor:)\n"
-                "- Write in the imperative mood (e.g., 'add feature', not 'added feature')\n"
-                "- Keep the message concise and under 50 characters for the summary\n"
-                "- Do not include explanations, only output the commit message text"
+                """
+                You are an expert in writing clear, conventional git commit messages. 
+                Your task is to generate a single, well-formatted commit message based on the user's input. 
+                Follow these rules:\n
+                - Use the Conventional Commit style (e.g., feat:, fix:, docs:, refactor:)\n
+                - Write in the imperative mood (e.g., 'add feature', not 'added feature')\n
+                - Keep the message concise and under 50 characters for the summary\n
+                - Do not include explanations, only output the commit message text
+                """
             ),
         ),
         ("human", "{changes}"),
